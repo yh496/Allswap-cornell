@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'allswap.urls'
+ROOT_URLCONF = 'ALLSWAP_DJANGOREST.urls'
 
 TEMPLATES = [
     {
@@ -81,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'allswap.wsgi.application'
+WSGI_APPLICATION = 'ALLSWAP_DJANGOREST.wsgi.application'
 
 
 # Database
