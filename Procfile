@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn allswap_settings.wsgi --log-file -
+web: gunicorn allswap.wsgi --log-file -
