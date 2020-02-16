@@ -157,6 +157,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
 ACCOUNT_EMAIL_REQUIRED = False
 
-django_heroku.settings(locals())
 
 del DATABASES['default']['OPTIONS']['sslmode']
