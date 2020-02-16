@@ -21,7 +21,7 @@ class ProductDetail extends React.Component {
                 Authorization: newProps.token
             }
             const productID = this.props.match.params.productID;
-            axios.get(`http://127.0.0.1:8000/api/${productID}`)
+            axios.get(`allswap-cornell.herokuapp.com/api/${productID}/`)
                 .then(res => {  
                     this.setState({
                         product: res.data
@@ -37,7 +37,7 @@ class ProductDetail extends React.Component {
                 "Content-Type": "application/json",
                 Authorization: this.props.token
             }
-            axios.delete(`http://127.0.0.1:8000/api/${productID}`);
+            axios.delete(`allswap-cornell.herokuapp.com/api/${productID}/`);
             this.props.history.push('/');
             this.forceUpdate();
         } else {

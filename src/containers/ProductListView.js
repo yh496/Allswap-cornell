@@ -18,7 +18,7 @@ class ProductList extends React.Component {
                 "Content-Type": "application/json",
                 Authorization: newProps.token
             }
-            axios.get('http://127.0.0.1:8000/api/')
+            axios.get('allswap-cornell.herokuapp.com/api/')
             .then(res => {
                 this.setState({
                     products: res.data

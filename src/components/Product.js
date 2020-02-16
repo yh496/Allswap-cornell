@@ -38,7 +38,7 @@ const Products = (props) => {
             >
                 <List.Item.Meta
                 avatar={<Avatar src={item.avatar} />}
-                title={<a href= {`/${item.id}`}>{item.title}</a>}
+                title={<a href= {`/products/${item.id}`}>{item.title}</a>}
                 description={item.description}
                 />
                 {item.content}
