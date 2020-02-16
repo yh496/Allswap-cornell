@@ -18,7 +18,7 @@ class CustomForm extends React.Component {
         }
         switch ( requestType ){
             case 'post':
-                return axios.post('allswap-cornell.herokuapp.com/api/', {
+                return axios.post('/api/', {
                     title: title,
                     content: content,
                     price: price
@@ -26,7 +26,7 @@ class CustomForm extends React.Component {
                 .then(res => console.log(res))
                 .catch(error => console.err(error));
             case 'put':
-                return axios.put(`allswap-cornell.herokuapp.com/api/${productID}/`, {
+                return axios.put(`/api/${productID}/`, {
                     title: title,
                     content: content,
                     price: price
