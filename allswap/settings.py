@@ -30,7 +30,7 @@ SECRET_KEY = '4lq**(%&9v!vnm-ijp%fr%)cqijkbrlmfp97vj58u3cq9wgg=2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['allswap-cornell.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['allswap-cornell.herokuapp.com']
 
 
 # Application definition
