@@ -7,11 +7,11 @@ const FormItem = Form.Item;
 
 
 class CustomForm extends React.Component {
-
     handleFormSubmit = (event, requestType, productID) => {
         const title = event.target.elements.title.value;
         const content = event.target.elements.content.value;
         const price = event.target.elements.price.value;
+        const user = localStorage.getItem('user');
         axios.defaults.headers = {
             "Content-Type": "application/json",
             Authorization: this.props.token
@@ -19,6 +19,7 @@ class CustomForm extends React.Component {
         switch ( requestType ){
             case 'post':
                 return axios.post('/api/', {
+                    user: user,
                     title: title,
                     content: content,
                     price: price
@@ -43,20 +44,20 @@ class CustomForm extends React.Component {
             <Form onSubmit = {(event) => this.handleFormSubmit(
                 event, 
                 this.props.requestType,
-                this.props.productID
+                this.props.productID,
                 )}>
-            <Form.Item label="Title">
+            <FormItem label="Title">
                 <Input name = "title" placeholder="Put a title here" />
-            </Form.Item>
-            <Form.Item label="Content">
+            </FormItem>
+            <FormItem label="Content">
                 <Input name = "content" placeholder="Enter some content ..." />
-            </Form.Item>
-            <Form.Item label="Price">
+            </FormItem>
+            <FormItem label="Price">
                 <Input name = "price" placeholder="Enter some price ..." />
-            </Form.Item>
-            <Form.Item>
+            </FormItem>
+            <FormItem>
                 <Button type="primary" htmlType = "submit" >{this.props.btnTxt}</Button>
-            </Form.Item>
+            </FormItem>
             </Form>
         </div>
         );

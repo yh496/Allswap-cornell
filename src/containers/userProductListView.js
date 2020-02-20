@@ -3,24 +3,26 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 import Products from '../components/Product';
-import CustomForm from '../components/Form';
 
-class ProductList extends React.Component {
+class userProductList extends React.Component {
 
     state = {
-        products: []
+        user_products: []
     }
 
     componentWillReceiveProps(newProps) {
+        const username = this.props.match.params.username;
+        console.log(username);
+
         if (newProps.token) {
             axios.defaults.headers = {
                 "Content-Type": "application/json",
                 Authorization: newProps.token
             }
-            axios.get('/api/')
+            axios.get(`/api/${username}/products`)
             .then(res => {
                 this.setState({
-                    products: res.data
+                    user_products: res.data
                 })
             });
         }
@@ -28,7 +30,7 @@ class ProductList extends React.Component {
     render() {
         return (
             <div>
-                <Products data = {this.state.products}/>
+                <Products data = {this.state.user_products}/>
                 <br />
             </div>
         )
@@ -42,4 +44,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(ProductList);
+export default connect(mapStateToProps)(userProductList);

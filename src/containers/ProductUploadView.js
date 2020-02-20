@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-
-import Products from '../components/Product';
 import CustomForm from '../components/Form';
+import Products from '../components/Product';
 
-class ProductList extends React.Component {
 
+
+class ProductUpload extends React.Component {
     state = {
         products: []
     }
@@ -25,13 +25,17 @@ class ProductList extends React.Component {
             });
         }
     }
-    render() {
+    render () {
         return (
-            <div>
-                <Products data = {this.state.products}/>
-                <br />
-            </div>
-        )
+        <div>
+            <br />
+            <h2>Upload a Product</h2>
+            <CustomForm 
+                requestType = "POST" 
+                productID = {null} 
+                btnTxt = "Upload" />
+        </div>
+        );
     }
 }
 
@@ -41,5 +45,4 @@ const mapStateToProps = state => {
     }
 }
 
-
-export default connect(mapStateToProps)(ProductList);
+export default connect(mapStateToProps)(ProductUpload);

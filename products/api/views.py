@@ -1,7 +1,8 @@
 from rest_framework import viewsets
 from products.models import Product
 from .serializers import ProductSerializer
-
+from rest_framework import generics
+from allswap import settings
 
 class ProductViewSet(viewsets.ModelViewSet):
     """
@@ -11,3 +12,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
 
 
+class userProductListView(generics.ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return Product.objects.filter(user__username = username)
