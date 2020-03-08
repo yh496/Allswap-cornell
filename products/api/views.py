@@ -21,32 +21,3 @@ class ProductListAPIView(generics.ListCreateAPIView):
         kwargs['user']=self.request.user
         serializer.save(**kwargs)  
 
-
-
-class userProductListView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
-    authentication_class = JSONWebTokenAuthentication
-    def get(self, request):
-        try:
-            user_products = Product.objects.get(user=request.user)
-            status_code = status.HTTP_200_OK
-            response = {
-                'success': 'true',
-                'status code': status_code,
-                'message': 'User products fetched successfully',
-                'data': [{
-                    'title': user_products.title,
-                    'content': user_products.content,
-                    'price': user_products.price,
-                    }]
-                }
-
-        except Exception as e:
-            status_code = status.HTTP_400_BAD_REQUEST
-            response = {
-                'success': 'false',
-                'status code': status.HTTP_400_BAD_REQUEST,
-                'message': 'User does not exists',
-                'error': str(e)
-                }
-        return Response(response, status=status_code)
