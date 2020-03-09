@@ -35,10 +35,8 @@ class userProductListAPIView(generics.ListAPIView):
         userID = self.kwargs['id']
         return Product.objects.filter(user__id = userID)
 
-
-
-class userProductDetailAPIVIew(generics.RetrieveDestroyAPIView):
+class userProductDetailAPIView(generics.RetrieveDestroyAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     authentication_class = JSONWebTokenAuthentication
