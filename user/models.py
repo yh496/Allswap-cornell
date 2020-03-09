@@ -59,6 +59,7 @@ class User(AbstractBaseUser):
     # Tells Django that the UserManager class defined above should manage
     # objects of this type.
     objects = UserManager()
+   
 
     def token(self):
          return self._generate_jwt_token()

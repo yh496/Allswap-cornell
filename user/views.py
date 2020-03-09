@@ -12,9 +12,10 @@ from .models import User
 from .serializers import UserRegistrationSerializer
 from .serializers import UserLoginSerializer
 from products.models import Product
-
+from rest_framework import serializers
 
 # Create your views here.
+
 class UserRegistrationView(CreateAPIView):
 
     serializer_class = UserRegistrationSerializer
@@ -33,6 +34,7 @@ class UserRegistrationView(CreateAPIView):
         
         return Response(response, status=status_code)
 
+
 class UserLoginView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = UserLoginSerializer
@@ -46,10 +48,13 @@ class UserLoginView(APIView):
             'message': 'User logged in  successfully',
             'token' : serializer.data['token'],
         }
+
                 
         status_code = status.HTTP_200_OK
 
         return Response(response, status=status_code)
+
+   
 
 class UserProfileView(RetrieveAPIView):
 
@@ -68,7 +73,9 @@ class UserProfileView(RetrieveAPIView):
                     'first_name': user_profile.first_name,
                     'last_name': user_profile.last_name,
                     'phone_number': user_profile.phone_number,
-                    }]
+                    }],
+                'userID': user_profile.id
+
                 }
 
         except Exception as e:
