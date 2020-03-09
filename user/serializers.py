@@ -39,6 +39,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
+
+
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
@@ -63,5 +65,9 @@ class UserLoginSerializer(serializers.Serializer):
             )
         return {
             'email':user.email,
+<<<<<<< HEAD
             'token': jwt_token,
+=======
+            'token': jwt_token
+>>>>>>> cf1d3c8f7fcd7c279fab6392bcdba877eb153604
         }
