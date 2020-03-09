@@ -14,6 +14,7 @@ urlpatterns = [
     path('',ProductListAPIView.as_view()),
     path('upload/', ProductCreateAPIView.as_view()),
     path('<slug:id>/', userProductListAPIView.as_view()),
+    path('userproducts/', userProductListAPIView.as_view()),
     path('detail/<int:pk>/', userProductDetailAPIView.as_view()),
 ]
 

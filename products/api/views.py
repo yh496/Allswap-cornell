@@ -30,10 +30,14 @@ class ProductCreateAPIView(generics.CreateAPIView):
 
 class userProductListAPIView(generics.ListAPIView):
     serializer_class = ProductSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
 
     def get_queryset(self):
-        userID = self.kwargs['id']
-        return Product.objects.filter(user__id = userID)
+        user = self.request.user 
+        
+        #userID = self.kwargs['id']
+        return Product.objects.filter(user = user)
 
 class userProductDetailAPIView(generics.RetrieveDestroyAPIView):
     serializer_class = ProductSerializer

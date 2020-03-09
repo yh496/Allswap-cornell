@@ -1,4 +1,4 @@
-import React from "react";
+/**import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 
@@ -16,7 +16,7 @@ class userProductList extends React.Component {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     };
 
-    axios.get("/api-user/profile/", config).then(res => {
+    axios.get("/api-user//", config).then(res => {
       console.log("hi");
 
       this.setState({
@@ -51,6 +51,54 @@ class userProductList extends React.Component {
       });
     }
   }
+  render() {
+    return (
+      <div>
+        <Products data={this.state.user_products} />
+        <br />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  };
+};
+
+export default connect(mapStateToProps)(userProductList);
+
+*/
+import React from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+
+import Products from "../components/Product";
+
+class userProductList extends React.Component {
+  state = {
+    user_products: []
+  };
+
+  constructor() {
+    super();
+    console.log("hi");
+    console.log(localStorage.getItem("token"));
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    };
+    
+  
+
+    axios.get("/api-products/userproducts/", config).then(res => {
+      console.log(res);
+      this.setState({
+        user_products: res.data
+      });
+    });
+  }
+
   render() {
     return (
       <div>
