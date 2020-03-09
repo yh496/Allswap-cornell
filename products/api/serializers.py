@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from products.models import Product
-from user.models import User
+from user.models import UserProfile
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
-        fields = ['id', 'email']    
+        model = UserProfile
+        fields = ['id']  
 
         
 class ProductSerializer(serializers.ModelSerializer):
