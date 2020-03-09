@@ -28,7 +28,7 @@ class CustomForm extends React.Component {
       case "POST":
         return axios
           .post(
-            "/api-products/",
+            "/api-products/upload/",
             {
               // user: user,
               title: title,
