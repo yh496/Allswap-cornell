@@ -7,7 +7,7 @@ import Products from "../components/Product";
 class userProductList extends React.Component {
   state = {
     user_products: [],
-    userID: ""
+    user_id: ""
   };
 
   constructor() {
@@ -20,14 +20,16 @@ class userProductList extends React.Component {
       console.log("hi");
 
       this.setState({
-        userID: res.userID
+        user_id: res.data.user_id
       });
       console.log(res.data);
-      console.log(res.data.userID);
-      axios.get(`/api-products/${res.data.userID}`).then(res2 => {
+      console.log(res.data.user_id);
+      axios.get(`/api-products/${res.data.user_id}/`).then(res2 => {
         this.setState({
           user_products: res2.data
         });
+        console.log(res2);
+        console.log(res2.data);
         console.log(this.state.user_products);
       });
     });
