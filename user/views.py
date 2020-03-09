@@ -63,6 +63,7 @@ class UserProfileView(RetrieveAPIView):
 
     def get(self, request):
         try:
+            user = User.objects.get(user=request.user)
             user_profile = UserProfile.objects.get(user=request.user)
             status_code = status.HTTP_200_OK
             response = {
@@ -74,7 +75,7 @@ class UserProfileView(RetrieveAPIView):
                     'last_name': user_profile.last_name,
                     'phone_number': user_profile.phone_number,
                     }],
-                'userID': user_profile.id
+                'userID': user.id
 
                 }
 
