@@ -17,6 +17,7 @@ class ProductList extends React.Component {
   
 
     axios.get("/api-products/").then(res => {
+      console.log(res);
       this.setState({
         products: res.data
       });
