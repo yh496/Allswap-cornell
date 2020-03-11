@@ -8,7 +8,7 @@ class Product(models.Model):
     content = models.TextField()
     price = models.IntegerField()
     image = models.ImageField(
-        upload_to = 'media',
+        upload_to = 'uploads',
         null = True
     )
     

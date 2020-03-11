@@ -14,9 +14,7 @@ class ProductList extends React.Component {
     super();
     console.log("hi");
     console.log(localStorage.getItem("token"));
-    const config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    };
+  
 
     axios.get("/api-products/").then(res => {
       console.log(res);
