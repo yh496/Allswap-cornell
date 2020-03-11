@@ -1,6 +1,6 @@
 import React from "react";
-import { List, Avatar, Icon } from "antd";
-
+import { List, Icon } from "antd";
+// import imagetest.jpg from "../../media/media/imagetest.jpg";
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
@@ -9,6 +9,7 @@ const IconText = ({ type, text }) => (
 );
 
 const Products = props => {
+  console.log(props)
   return (
     <List
       itemLayout="vertical"
@@ -31,9 +32,8 @@ const Products = props => {
           extra={
             <img
               width={272}
-              alt="logo"
-              src="../../media/media/imagetest_EdlCR9i.jpg"
-            />
+              src={require(`${item.image}`)}
+              alt = "product" />
           }
         >
           <List.Item.Meta
