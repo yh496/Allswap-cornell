@@ -32,7 +32,6 @@ const Products = props => {
           extra={
             <img
               width={272}
-              src={require(`${item.image}`)}
               alt = "product" />
           }
         >
