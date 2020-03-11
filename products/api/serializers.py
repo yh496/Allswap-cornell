@@ -11,8 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
         
 class ProductSerializer(serializers.ModelSerializer):
     user = UserSerializer(default = serializers.CurrentUserDefault())
+    image = serializers.ImageField(required=False)
+    
+
     class Meta:
         model = Product
-        fields = ('id','user','title','content','price')
+        fields = ('id','user','title','content','price','image')
 
        

@@ -6,48 +6,43 @@ import { Form, Input, Button } from "antd";
 const FormItem = Form.Item;
 
 class CustomForm extends React.Component {
+
+  state = { selectedFile: null }
+
+  fileChangedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] })
+  }
+
   handleFormSubmit = (event, requestType, productID) => {
     event.preventDefault();
-    const title = event.target.elements.title.value;
-    const content = event.target.elements.content.value;
-    const price = event.target.elements.price.value;
-    // const user = localStorage.getItem("user");
-    // console.log(user);
-    console.log(localStorage.getItem("token"));
-    console.log(this.props.token);
-    // axios.defaults.headers = {
-    //   "Content-Type": "application/json",
-    //   Authorization: this.props.token
-    // };
-
+    let formData = new FormData();
+    formData.append('title', event.target.elements.title.value)
+    formData.append('content', event.target.elements.content.value)
+    formData.append('price', event.target.elements.price.value)
+    formData.append('image', this.state.selectedFile)
+    
     const config = {
-      headers: { Authorization: `Bearer ${this.props.token}` }
-    };
-    console.log("hi");
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      }
     switch (requestType) {
       case "POST":
         return axios
           .post(
-            "/api-products/upload/",
-            {
-              // user: user,
-              title: title,
-              content: content,
-              price: price
-            },
+            "/api-products/upload/", formData,
             config
           )
           .then(res => console.log(res))
           .catch(error => console.err(error));
-      case "put":
-        return axios
-          .put(`/api/${productID}/`, {
-            title: title,
-            content: content,
-            price: price
-          })
-          .then(res => console.log(res))
-          .catch(error => console.err(error));
+      // case "put":
+      //   return axios
+      //     .put(`/api/${productID}/`, {
+      //       title: title,
+      //       content: content,
+      //       price: price
+            
+      //     })
+      //     .then(res => console.log(res))
+      //     .catch(error => console.err(error));
     }
   };
   render() {
@@ -70,6 +65,10 @@ class CustomForm extends React.Component {
           </FormItem>
           <FormItem label="Price">
             <Input name="price" placeholder="Enter some price ..." />
+          </FormItem>
+          <FormItem label = "Image">
+            <Input name = "image"  type = "file" onChange = {this.fileChangedHandler}>
+            </Input>
           </FormItem>
           <FormItem>
             <Button type="primary" htmlType="submit">

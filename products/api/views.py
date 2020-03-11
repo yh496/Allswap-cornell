@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from products.models import Product
 from .serializers import ProductSerializer
 from rest_framework import generics, serializers
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -22,9 +23,15 @@ class ProductCreateAPIView(generics.CreateAPIView):
     queryset = Product.objects.all()
     permission_classes = (IsAuthenticated,)
     authentication_class = JSONWebTokenAuthentication
+    parser_classes = (FormParser, MultiPartParser)
 
     def perform_create(self, serializer, **kwargs):
         kwargs['user']=self.request.user
+        kwargs['image']= self.request.data.get('image')
+        kwargs['title'] = self.request.data.get('title')
+        kwargs['content'] = self.request.data.get('content')
+        kwargs['price'] = self.request.data.get('price')
+
         serializer.save(**kwargs)  
 
 

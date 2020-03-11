@@ -32,14 +32,12 @@ const Products = props => {
             <img
               width={272}
               alt="logo"
-              src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+              src="../../media/media/imagetest_EdlCR9i.jpg"
             />
           }
         >
           <List.Item.Meta
-            // avatar={<Avatar src={item.avatar} />}
             title={<a href={`/products/${item.id}`}>{item.title}</a>}
-            // description={item.description}
             price={item.price}
           />
           {item.content}
